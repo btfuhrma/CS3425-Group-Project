@@ -32,7 +32,7 @@
         $statement->bindParam(":passwd", $passwd);
         $result = $statement->execute();
         $pass = $statement->fetch();
-        if(strcmp($pass, "password123")){
+        if(strcmp($pass, "password123") == 1){
             return true;
         }
         else{
