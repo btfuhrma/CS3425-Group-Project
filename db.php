@@ -11,7 +11,7 @@
     function authenticateUser($user, $passwd){
         try { 
             $dbh = connectDB(); 
-            $statement = $dbh->prepare("SELECT count(*) FROM lab4_customer where username = :username and password = sha2(:passwd,256) "); 
+            $statement = $dbh->prepare("SELECT count(*) FROM Student where username = :username and password = sha2(:passwd,256) "); 
             $statement->bindParam(":username", $user); 
             $statement->bindParam(":passwd", $passwd); 
             $result = $statement->execute(); 
@@ -25,4 +25,18 @@
         } 
     }
 
+    function firstTime($user, $passwd){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT password from Student where username = :username and password = sha2(:passwd,256)");
+        $statement->bindParam(":username", $user);
+        $statement->bindParam(":password", $passwd);
+        $result = $statement->execute();
+        $pass = $statement->fetch();
+        if(strcmp($pass, "password123")){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 ?>

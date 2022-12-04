@@ -29,9 +29,8 @@
     </div> 
     <?php
         if(isset($_POST["loginSubmit"])){
-            $auth = authenticateUser($_POST["username"], $_POST["password"]);
-            if($auth){
-                ;
+            if(authenticateUser($_POST["username"], $_POST["password"]) == 1 && firstTime($_POST["username"], $_POST["password"]) == true){
+                header('LOCATION: changePassword.php');
             }
         }
     ?>
