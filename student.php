@@ -3,12 +3,12 @@
     require "db.php";
 ?>
 <html>
-<form action="login.php" method="post" >
-    <button name="logout">logout</button>
+<form action="student.php" method="post" >
+    <input type="submit" name="logout">
         <?php
         if (isset($_POST["logout"])) {
+            session_destroy();
             header("LOCATION:login.php");
-
         }
         ?>
 </form>
