@@ -34,6 +34,13 @@
             }
             else if(authenticateUser($_POST["username"], $_POST["password"])==1 && firstTime($_POST["username"], $_POST["password"]) == false ){
                 $_SESSION["username"] = $_POST["username"];
+                if(isInstructor($_SESSION["username"]) >= 1){
+                    header('LOCATION: instructor.php');
+                }
+                else{
+                    header('LOCATION: student.php');
+                }
+                
             }
         }
     ?>
