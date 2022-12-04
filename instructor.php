@@ -28,31 +28,24 @@
     </form>
        
     <p>Please enter the course id and the exam name to see the score of the students</p>
-        <form action="login.php" method="post" >
+        
         <p>Course: 
             <input name="username" type="text">
         </p>
         <p>Exam: 
             <input name="password" type="text">
         </p>
-        
+        <form action="checkScore.php" method="post" >
         <button name="checkScore">Check Score</button>
-        <button name="reviewExam">Review Exam</button>
-        <button name="createExam">Create Exam</button>
-        
         <?php
         if (isset($_POST["checkScore"])) {
             header("LOCATION:checkScore.php");
-            
-        }
-        if (isset($_POST["revireExam"])) {
-            header("LOCATION:reviewExam.php");
-        }
-        if (isset($_POST["createExam"])) {
-            header("LOCATION:createExam.php");
+
         }
         ?>
         </form> 
+        <button name="reviewExam">Review Exam</button>
+        <button name="createExam">Create Exam</button>
 
     </body>
     
