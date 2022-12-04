@@ -10,7 +10,6 @@
             echo '<p align="right"> Dear Instructor '. $_SESSION["username"].', Welcome!</p>';
         }
     ?>
-
     <form action="login.php" method="get">
     <p>
     <input type="submit" value="logout" name="logout">
