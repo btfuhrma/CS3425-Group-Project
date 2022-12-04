@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require "groupproject.ini";
+    require "db.php";
 
     if(!isset($_SESSION["username"])){
         header('LOCATION: login.php');
