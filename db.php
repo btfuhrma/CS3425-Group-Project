@@ -2,7 +2,7 @@
     
     //Function for connecting to the database
     function connectDB() {
-        $config = parse_ini_file("gruopproject.ini");
+        $config = parse_ini_file("groupproject.ini");
         $dbh = new PDO($config['dsn'], $config['username'], $config['password']);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $dbh;
@@ -11,8 +11,8 @@
     function authenticateUser($user, $passwd){
         try { 
             $dbh = connectDB(); 
-            $statement = $dbh->prepare("SELECT count(*) FROM Student where username = :username and password = sha2(:passwd,256) "); 
-            $statement->bindParam(":username", $user); 
+            $statement = $dbh->prepare("SELECT count(*) FROM Student where account_name = :username and password = sha2(:passwd,256) "); 
+            $statement->bindParam(":account_name", $user); 
             $statement->bindParam(":passwd", $passwd); 
             $result = $statement->execute(); 
             $row=$statement->fetch(); 
@@ -27,8 +27,8 @@
 
     function firstTime($user, $passwd){
         $dbh = connectDB();
-        $statement = $dbh->prepare("SELECT password from Student where username = :username and password = sha2(:passwd,256)");
-        $statement->bindParam(":username", $user);
+        $statement = $dbh->prepare("SELECT password from Student where account_name = :username and password = sha2(:passwd,256)");
+        $statement->bindParam(":account_name", $user);
         $statement->bindParam(":password", $passwd);
         $result = $statement->execute();
         $pass = $statement->fetch();
