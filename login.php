@@ -32,6 +32,9 @@
             if(authenticateUser($_POST["username"], $_POST["password"]) == 1 && firstTime($_POST["username"], $_POST["password"]) == true){
                 header('LOCATION: changePassword.php');
             }
+            else if(authenticateUser($_POST["username"], $_POST["password"])==1 && firstTime($_POST["username"], $_POST["password"]) == false ){
+                $_SESSION["username"] = $_POST["username"];
+            }
         }
     ?>
 </body>
