@@ -27,4 +27,12 @@
             </div>
         </form>
     </div> 
+    <?php
+        if(isset($_POST["loginSubmit"])){
+            $auth = authenticateUser($_POST["username"], $_POST["password"]);
+            if($auth){
+                ;
+            }
+        }
+    ?>
 </body>
