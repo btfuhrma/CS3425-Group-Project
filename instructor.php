@@ -10,6 +10,7 @@
             echo '<p align="right"> Dear Instructor '. $_SESSION["username"].', Welcome!</p>';
         }
     ?>
+
     <form action="login.php" method="get">
     <p>
     <input type="submit" value="logout" name="logout">
@@ -35,17 +36,23 @@
         <p>Exam: 
             <input name="password" type="text">
         </p>
-        <form action="checkScore.php" method="post" >
+        <form action="exam.php" method="post" >
         <button name="checkScore">Check Score</button>
-        <?php
-        if (isset($_POST["checkScore"])) {
-            header("LOCATION:checkScore.php");
-
-        }
-        ?>
-        </form> 
         <button name="reviewExam">Review Exam</button>
         <button name="createExam">Create Exam</button>
+        </form> 
+
+        <?php
+        if (isset($_POST["checkScore"])) {
+            header("LOCATION:exam.php");
+        }
+        if (isset($_POST["checkScore"])) {
+            header("LOCATION:exam.php");
+        }
+        if (isset($_POST["checkScore"])) {
+            header("LOCATION:exam.php");
+        }
+        ?>
 
     </body>
     
