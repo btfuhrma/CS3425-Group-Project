@@ -90,4 +90,36 @@
         $credits = $statement->fetch();
         return $credits;
     }
+    function getExamName($course){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT exam_name FROM examOf WHERE course_id = :course");
+        $statement->bindParam(":course", $course);
+        $statement->execute();
+        $examName = $statement->fetch();
+        return $examName;
+    }
+    function getOpenTime($examName){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT start_time FROM Exam WHERE exam_name = :examName");
+        $statement->bindParam(":examName", $examName);
+        $statement->execute();
+        $startTime = $statement->fetch();
+        return $startTime;
+    }
+    function getCloseTime($examName){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT end_time FROM Exam WHERE exam_name = :examName");
+        $statement->bindParam(":examName", $examName);
+        $statement->execute();
+        $endTime = $statement->fetch();
+        return $endTime;
+    }
+    function getTotalPoints($examName){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT total_points FROM Exam WHERE exam_name = :examName");
+        $statement->bindParam(":examName", $examName);
+        $statement->execute();
+        $totalPoints = $statement->fetch();
+        return $totalPoints;
+    }
 ?>

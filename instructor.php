@@ -53,10 +53,15 @@
             <?php
                 $courses = getCourses($_SESSION["username"]);
                 foreach($courses as $course){
+                    $examName = getExamName($course);
                     echo '<tr>
                     <td>'.$course.'</td>
                     <td>'.getCourseTitle($course).'</td>
                     <td>'.getCredits($course).'</td>
+                    <td>'.$examName.'</td>
+                    <td>'.getOpenTime($examName).'</td>
+                    <td>'.getCloseTime($examName).'</td>
+                    <td>'.getTotalPoints($examName).'</td>
                     </tr>';
                 }
             ?>
