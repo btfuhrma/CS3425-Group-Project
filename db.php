@@ -60,7 +60,7 @@
 
     function getCourses($user){
         $dbh = connectDB();
-        $statement = $dbh->prepare("SELECT course_id FROM Teaches WHERE account_name = :username");
+        $statement = $dbh->prepare("SELECT course_id FROM Teach WHERE account_name = :username");
         $statement->bindParam(":username", $user);
         $result = $statement->execute();
         $row = $statement->fetchAll();
