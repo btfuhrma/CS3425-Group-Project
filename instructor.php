@@ -51,7 +51,14 @@
 
             </tr>
             <?php
-                getCourses($_SESSION["username"]);
+                $courses = getCourses($_SESSION["username"]);
+                foreach($courses as $course){
+                    echo '<tr>
+                    <td>'.$course.'</td>
+                    <td>'.getCourseTitle($course).'</td>
+                    <td>'.getCredits($course).'</td>
+                    </tr>';
+                }
             ?>
         </table>
     </div>

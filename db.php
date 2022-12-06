@@ -74,4 +74,20 @@
         sort($courses);
         return ($courses);
     }
+    function getCourseTitle($course){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT course_title FROM Course WHERE course_id = :course");
+        $statement->bindParam(":course", $course);
+        $statement->execute();
+        $title = $statement->fetch();
+        return $title;
+    }
+    function getCredits($course){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT credits FROM Course WHERE course_id = :course");
+        $statement->bindParam(":course", $course);
+        $statement->execute();
+        $credits = $statement->fetch();
+        return $credits;
+    }
 ?>
