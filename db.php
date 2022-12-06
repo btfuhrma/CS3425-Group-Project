@@ -80,7 +80,7 @@
         $statement->bindParam(":course", $course);
         $statement->execute();
         $title = $statement->fetch();
-        return $title;
+        return $title[0];
     }
     function getCredits($course){
         $dbh = connectDB();
@@ -88,7 +88,7 @@
         $statement->bindParam(":course", $course);
         $statement->execute();
         $credits = $statement->fetch();
-        return $credits;
+        return $credits[0];
     }
     function getExamName($course){
         $dbh = connectDB();
@@ -96,7 +96,7 @@
         $statement->bindParam(":course", $course);
         $statement->execute();
         $examName = $statement->fetch();
-        return $examName;
+        return $examName[0];
     }
     function getOpenTime($examName){
         $dbh = connectDB();
@@ -104,7 +104,7 @@
         $statement->bindParam(":examName", $examName);
         $statement->execute();
         $startTime = $statement->fetch();
-        return $startTime;
+        return $startTime[0];
     }
     function getCloseTime($examName){
         $dbh = connectDB();
@@ -112,7 +112,7 @@
         $statement->bindParam(":examName", $examName);
         $statement->execute();
         $endTime = $statement->fetch();
-        return $endTime;
+        return $endTime[0];
     }
     function getTotalPoints($examName){
         $dbh = connectDB();
@@ -120,6 +120,22 @@
         $statement->bindParam(":examName", $examName);
         $statement->execute();
         $totalPoints = $statement->fetch();
-        return $totalPoints;
+        return $totalPoints[0];
+    }
+    function getExams($course){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT exam_name FROM examOf WHERE course_id = :course");
+        $statement->bindParam(":course", $course);
+        $result = $statement->execute();
+        $row = $statement->fetchAll();
+        $dbh = null;
+        $exams = array();
+        $i = 0;
+        foreach($row as $exam) {
+            $exams[$i] = $exam[0];
+            $i++;
+        }
+        sort($exams);
+        return ($exams);
     }
 ?>
