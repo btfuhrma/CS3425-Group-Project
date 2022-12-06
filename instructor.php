@@ -23,10 +23,38 @@
     </form> 
     </p>
 
-    <form action="bankoperation.php" method="post">
+    <div>
         <p>Here are the courses you are teaching and the exams that you have created for each course</p>
+        <table>
+            <tr>
+                <th>
+                    <b>ID</b>
+                </th>
+                <th>
+                    <b>Title</b>
+                </th>
+                <th>
+                    <b>Credit</b>
+                </th>
+                <th>
+                    <b>Exam Name</b>
+                </th>
+                <th>
+                    <b>Open Time</b>
+                </th>
+                <th>
+                    <b>Close Time</b>
+                </th>
+                <th>
+                    <b>Total Points</b>
+                </th>
 
-    </form>
+            </tr>
+            <?php
+                getCourses($_SESSION["username"]);
+            ?>
+        </table>
+    </div>
        
     <p>Please enter the course id and the exam name to see the score of the students</p>
         
