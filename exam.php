@@ -33,7 +33,7 @@ go back button
 ?>
 This function is not implemented yet<br>
 
-<form action="main.php" method="post">
+<form action="instructor.php" method="post">
     <button name="goBack">Go Back</button>
     <?php
         if (isset($_POST["goBack"])) {
