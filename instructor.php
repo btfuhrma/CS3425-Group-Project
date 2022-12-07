@@ -86,7 +86,7 @@
         <p>Exam: 
             <input name="password" type="text">
         </p>
-        <form action="exam.php" method="post" >
+        <form action="examInstructor.php" method="post" >
         <button name="checkScore">Check Score</button>
         <button name="reviewExam">Review Exam</button>
         <button name="createExam">Create Exam</button>
@@ -94,13 +94,13 @@
 
         <?php
         if (isset($_POST["checkScore"])) {
-            header("LOCATION:exam.php");
+            header("LOCATION:examInstructor.php");
         }
         if (isset($_POST["checkScore"])) {
-            header("LOCATION:exam.php");
+            header("LOCATION:examInstructor.php");
         }
         if (isset($_POST["checkScore"])) {
-            header("LOCATION:exam.php");
+            header("LOCATION:examInstructor.php");
         }
         ?>
 
