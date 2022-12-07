@@ -7,12 +7,12 @@
         if (!isset($_SESSION["username"])) {
             header("LOCATION:login.php");
         }else {
-            echo '<p align="right"> Dear Instructor '. $_SESSION["username"].', Welcome!</p>';
+            echo '<p align="left"> Dear Instructor '. $_SESSION["username"].', Welcome!</p>';
         }
     ?>
 
     <form action="login.php" method="get">
-    <p>
+    <p style="text-align:left">
     <input type="submit" value="logout" name="logout">
     <?php
     if (isset($_GET["logout"])) {
@@ -25,6 +25,14 @@
 
     <div>
         <p>Here are the courses you are teaching and the exams that you have created for each course</p>
+        <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse
+        }
+        </style>
         <table>
             <tr>
                 <th>

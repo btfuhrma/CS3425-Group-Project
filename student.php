@@ -4,13 +4,13 @@
     if (!isset($_SESSION["username"])) {
         header("LOCATION:login.php");
 } else {
-    echo '<p align="left"> Dear student ' . $_SESSION["username"] . ',@mtu.edu, Welcome!</p>';
+    echo '<p align="left"> Dear student ' . $_SESSION["username"] . '@mtu.edu, Welcome!</p>';
 }
 ?>
 <html>
     
 <form action="student.php" method="post" >
-    <input type="submit" name="logout">
+    <input type="submit" name="logout" value="logout">
         <?php
         if (isset($_POST["logout"])) {
             session_destroy();
@@ -18,4 +18,108 @@
         }
         ?>
 </form>
+<div>
+    <p>Here are the courses you are teaching and the exams that you have created for each course</p>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse
+        }
+        </style>
+    <table>
+        <tr>
+            <th>
+                <b>c_id</b>
+            </th>
+            <th>
+                <b>Title</b>
+            </th>
+            <th>
+                <b>Credit</b>
+            </th>
+            <th>
+                <b>Name</b>
+            </th>
+        <tr>
+            <?php
+            $courses = getCourses($_SESSION["username"]);
+            foreach ($courses as $course) {
+                echo '<tr>
+                            <td>' . getCouseID($user) . '</td>
+                            <td>' . getCourseTitle($course) . '</td>
+                            <td>' . getCredits($course) . '</td>
+                            <td>' . getInstructorName($course) . '</td>
+                            </tr>';
+            }
+            ?>
+    </table>
+</div>
+<div>
+    <p>Here are the exams in each course and your score</p>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse
+        }
+        </style>
+    <table>
+        <tr>
+            <th>
+                <b>c_id</b>
+            </th>
+            <th>
+                <b>exam_name</b>
+            </th>
+            <th>
+                <b>open_time</b>
+            </th>
+            <th>
+                <b>close_time</b>
+            </th>
+            <th>
+                <b>total_points</b>
+            </th>
+            <th>
+                <b>start_time</b>
+            </th>
+            <th>
+                <b>end_time</b>
+            </th>
+            <th>
+                <b>score</b>
+            </th>
+        <tr>
+    </table>
+</div>
+<div>
+    <p>Here is the list of classes that you are not enrolled in yet</p>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse
+        }
+        </style>
+    <table>
+        <tr>
+            <th>
+                <b>id</b>
+            </th>
+            <th>
+                <b>Title</b>
+            </th>
+            <th>
+                <b>Credits</b>
+            </th>
+            <th>
+                <b>instructor_id</b>
+            </th>
+        <tr>
+</div>
+
 </html>

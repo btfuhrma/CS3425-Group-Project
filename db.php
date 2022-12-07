@@ -138,4 +138,23 @@
         sort($exams);
         return ($exams);
     }
+
+    function getCouseID($user)
+    {
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT course_id FROM Takes WHERE account_name =:username");
+        $statement->bindParam(":course", $course);
+        $statement->execute();
+        $examName = $statement->fetch();
+        return $examName[0];
+    }
+    function getInstructorName($course)
+    {
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT account_name FROM Teach WHERE course_id =:course");
+        $statement->bindParam(":course", $course);
+        $statement->execute();
+        $examName = $statement->fetch();
+        return $examName[0];
+    }
 ?>

@@ -7,7 +7,14 @@
 This is the Check Score Page!<br>
 Table for exam info<br>
 Table for student exam info<br>
-go back button
+<form action="instructor.php" method="post">
+<button name="goBack">Go Back</button>
+    <?php
+        if (isset($_POST["goBack"])) {
+            header("LOCATION:instructor.php");
+        }
+    ?>
+</form>
 
 <?php
     }
@@ -21,7 +28,14 @@ go back button
 This is the Review Exam Page!<br>
 Here are the questions for exam (exam name)<br>
 exam questions....<br>
-go back button
+<form action="instructor.php" method="post">
+<button name="goBack">Go Back</button>
+    <?php
+        if (isset($_POST["goBack"])) {
+            header("LOCATION:instructor.php");
+        }
+    ?>
+</form>
 
 <?php
     }
