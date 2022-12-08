@@ -10,59 +10,64 @@ require "db.php";
 <style>
     html,body {
         margin: 0;
-        height: 100%;
+        height: 80%;
     }
 
     .user {
         background-color: #000000;
-        text-align: center;
-        padding: 60px;
+        padding: 30px;
     }
 
     .logincontainer {
         height: 100%;
-        background-color: #d5d5d5;
+        background-color: #ffffff;
         overflow: hidden;
         vertical-align: top;
     }
     .login{
-        background-color: #aaaaaa;
-        border-radius: 10px;
-        margin-top: 40;
-        margin-left: 150;
-        width: 600px;
+        background-color:#d5d5d5;
+        border-radius: 8px;
+        margin-top: 50;
+        margin-left: 125;
+        width: 630px;
         height: 400px;
         font-size: 15px;
         font-family: Verdana, sans-serif;
     }
     .user-input{
-        padding: 30px 0px 10px 30px;
+        padding: 40px 0px 10px 30px;
     }
     .pass-input{
         padding: 0px 0px 10px 30px;
     }
     .inputbtn{
-        padding: 0px 0px 10px 30px;
+        padding: 10px 0px 10px 20px;
     }
     .submit-input{
         height:45px; 
-        width:525px; 
+        width:575px; 
         font-size: 20px; 
         background-color:#ffcd00;
         border: none;
     }
     .submit-input:hover{
-        background-color: #d5d5d5;
+        background-color: #A9A9A9;
         text-decoration: underline;
         border: none;
         cursor: pointer;
     }
     .text{
-        padding: 0px 0px 10px 30px;
+        padding: 40px 0px 10px 30px;
+    }
+    .resize{
+        padding-left: 100px;
+        max-width: 20%;
+        max-height: 20%;
     }
 </style>
 <header class="user">
-    <img src="C:\Users\leiya\OneDrive\Documents\Michigan Tech\Fall 2022\mtu logo.png">
+    <img src="mtu logo.png" class="resize">
+
 </header>
 
 <body>
@@ -71,14 +76,14 @@ require "db.php";
         <form method="POST" action="login.php">
             <div class="user-input">
                 <label for="">Username:</label><br>
-                <input type="text" name="username" style="height:45px; width:525px; font-size: 20px;">
+                <input type="text" name="username" style="height:45px; width:555px; font-size: 20px;">
             </div>
             <div class="pass-input">
                 <label for="">Password:</label><br>
-                <input type="password" name="password" style="height:45px; width:525px; font-size: 20px;"><br>
+                <input type="password" name="password" style="height:45px; width:555px; font-size: 20px;"><br>
             </div>
-            <div  class="inputbtn">
-                <input class="submit-input" type="submit" name="loginSubmit" value="Login">
+            <div class="inputbtn">
+                <input class="submit-input" type="submit" name="loginSubmit" value="LOGIN" style="height:42px;">
             </div>
             <p class="text">By logging into this system you agree to abide by Michigan Tech's Acceptable Use of Information Technology Resources.<p>
         </form>
