@@ -143,7 +143,7 @@
     {
         $dbh = connectDB();
         $statement = $dbh->prepare("SELECT course_id FROM Takes WHERE account_name =:username");
-        $statement->bindParam(":course", $course);
+        $statement->bindParam(":username", $user);
         $statement->execute();
         $examName = $statement->fetch();
         return $examName[0];

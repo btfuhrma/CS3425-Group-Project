@@ -19,7 +19,7 @@
         ?>
 </form>
 <div>
-    <p>Here are the courses you are teaching and the exams that you have created for each course</p>
+    <p>Here are the classes you are taking</p>
     <style>
         table,
         th,
@@ -46,13 +46,13 @@
             <?php
             $courses = getCourses($_SESSION["username"]);
             foreach ($courses as $course) {
-                echo '<tr>
+                    echo '<tr>
                             <td>' . getCouseID($user) . '</td>
                             <td>' . getCourseTitle($course) . '</td>
                             <td>' . getCredits($course) . '</td>
                             <td>' . getInstructorName($course) . '</td>
                             </tr>';
-            }
+                }
             ?>
     </table>
 </div>
