@@ -58,7 +58,7 @@
         return $row[0];
     }
 
-    function getCourses($user){
+    function getCoursesInstructor($user){
         $dbh = connectDB();
         $statement = $dbh->prepare("SELECT course_id FROM Teach WHERE account_name = :username");
         $statement->bindParam(":username", $user);
@@ -139,10 +139,10 @@
         return ($exams);
     }
 
-    function getCouseID($user)
+    function getCourseID($user)
     {
         $dbh = connectDB();
-        $statement = $dbh->prepare("SELECT course_id FROM Takes WHERE account_name =:username");
+        $statement = $dbh->prepare("SELECT course_id FROM Register WHERE account_name =:username");
         $statement->bindParam(":username", $user);
         $statement->execute();
         $examName = $statement->fetch();
@@ -156,5 +156,21 @@
         $statement->execute();
         $examName = $statement->fetch();
         return $examName[0];
+    }
+    function getCoursesStudent($user){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT course_id FROM Register WHERE account_name = :username");
+        $statement->bindParam(":username", $user);
+        $result = $statement->execute();
+        $row = $statement->fetchAll();
+        $dbh = null;
+        $courses = array();
+        $i = 0;
+        foreach($row as $course) {
+            $courses[$i] = $course[0];
+            $i++;
+        }
+        sort($courses);
+        return ($courses);
     }
 ?>

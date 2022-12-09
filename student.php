@@ -44,10 +44,10 @@
             </th>
         <tr>
             <?php
-            $courses = getCourses($_SESSION["username"]);
+            $courses = getCoursesStudent($_SESSION["username"]);
             foreach ($courses as $course) {
                     echo '<tr>
-                            <td>' . getCouseID($user) . '</td>
+                            <td>' . getCourseID($user) . '</td>
                             <td>' . getCourseTitle($course) . '</td>
                             <td>' . getCredits($course) . '</td>
                             <td>' . getInstructorName($course) . '</td>

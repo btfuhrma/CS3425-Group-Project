@@ -67,7 +67,6 @@ require "db.php";
 </style>
 <header class="user">
     <img src="mtu logo.png" class="resize">
-
 </header>
 
 <body>

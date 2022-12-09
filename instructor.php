@@ -59,7 +59,7 @@
 
             </tr>
             <?php
-                $courses = getCourses($_SESSION["username"]);
+                $courses = getCoursesInstructor($_SESSION["username"]);
                 foreach($courses as $course){
                     $exams = getExams($course);
                     foreach($exams as $exam){
