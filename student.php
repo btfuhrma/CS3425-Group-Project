@@ -47,7 +47,7 @@
             $courses = getCoursesStudent($_SESSION["username"]);
             foreach ($courses as $course) {
                     echo '<tr>
-                            <td>' . getCourseID($user) . '</td>
+                            <td>' . $course . '</td>
                             <td>' . getCourseTitle($course) . '</td>
                             <td>' . getCredits($course) . '</td>
                             <td>' . getInstructorName($course) . '</td>
