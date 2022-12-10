@@ -6,7 +6,6 @@
         
 ?>
 
-This is the Check Score Page!<br>
 <style>
     table,
     th,
@@ -41,7 +40,6 @@ This is the Check Score Page!<br>
             </th>
         </tr>
         <?php
-    print_r($_POST);
             $course = $_POST["course"];
             $exam = $_POST["exam"];
             for($x = 0; $x < 1; $x++) {
