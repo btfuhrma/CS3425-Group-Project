@@ -6,7 +6,7 @@
     <p>
         You have been added to 
         <?php
-            echo $_POST["courseName"];
+            echo $_SESSION["newCourse"];
         ?>
     </p>
     <form method="POST" action="student.php">
