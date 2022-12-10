@@ -171,17 +171,37 @@
     <p>To register new courses, please type the course id, then click the "Register New Course" button.</p>
     <p>To take an exam, please type the course id and the exam name, then click the "Take Exam" button.</p>
     <p>To check the exam score, please type the course id and the exam name, then click the "Check Score" button.</p>
-    <p>Course: 
-            <input name="username" type="text">
-        </p>
-        <p>Exam: 
-            <input name="password" type="text">
-        </p>
-        <form action="examStudent.php" method="post" >
-        <button name="registerCourse">Register New Course</button>
-        <button name="takeExam">Take Exam</button>
-        <button name="checkScore">Check Score</button>
+        <form action="student.php" method="post" >
+            <p>Course: 
+                <input type="text" name="courseName" type="text">
+            </p>
+            <p>Exam: 
+                <input type="text" name="examName" type="text">
+            </p>
+            <input type="submit" name="registerCourse" value="Register Course">
+            <input type="submit" name="takeExam" value="Take Exam">
+            <input type="submit" name="checkScore" value="Check Score">
         </form> 
 
 </div>
+<?php
+    if(isset($_POST["registerCourse"])){
+        if(courseExists($_POST["courseName"])){
+            registerCourse($_SESSION["username"], $_POST["courseName"]);
+        }
+    }
+    if(isset($_POST["takeExam"])){
+        if(courseExists($_POST["courseName"]) && examExists($_POST["examName"] && isOpen($_POST["examName"]))){
+            setStartTime($_POST["examName"], $_POST["courseName"], $_SESSION["username"]);
+            $_SESSION["currentExam"] = $_POST["examName"];
+            header('LOCATION: examStudent.php');
+        }
+    }
+    if(isset($_POST["checkScore"])){
+        if(courseExists($_POST["courseName"]) && examExists($_POST["examName"]) && taken($_POST["examName"], $_SESSION["username"])){
+            $_SESSION["currentExam"] = $_POST["examName"];
+            header('LOCATION: checkScore.php');
+        }
+    }
+?>
 </html>

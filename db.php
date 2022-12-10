@@ -224,4 +224,65 @@
         $statement->bindParam(":user", $user);
         $result = $statement->execute();
     }
+
+    function courseExists($course){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT count(*) FROM Course WHERE course_id = :course");
+        $statement->bindParam(":course", $course);
+        $result = $statement->execute();
+        $row = $statement->fetch();
+        if($row[0] == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    function examExists($examName){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT count(*) FROM Exam WHERE exam_name = :examName");
+        $statement->bindParam(":examName", $examName);
+        $result = $statement->execute();
+        $row = $statement->fetch();
+        if($row[0] == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    function registerCourse($user, $course){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("INSERT INTO Register VALUES(:accountName , :course)");
+        $statement->bindParam(":accountName", $user);
+        $statement->bindParam(":course", $course);
+        $result = $statement->execute();
+    }
+
+    function isOpen($exam){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT start_time,end_time FROM Exam WHERE exam_name = :examName");
+        $statement->bindParam(":examName", $exam);
+        $statement->execute();
+        $row = $statement->fetch();
+        $start = $row[0];
+        $end = $row[1];
+        $now = strtotime(date('Y-m-d H:i:s'));
+        if($now < $end && $now > $start){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    function setStartTime($exam, $course, $user){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("INSERT INTO Takes VALUES(:accountName , :course , :exam , :startTime)");
+        $statement->bindParam(":accountName", $user);
+        $statement->bindParam(":course", $course);
+        $statement->bindParam(":exam", $exam);
+        $statement->bindParam(":course", strtotime(date('Y-m-d H:i:s')));
+        $result = $statement->execute();
+    }
 ?>
