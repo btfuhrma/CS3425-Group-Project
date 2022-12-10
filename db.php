@@ -288,9 +288,60 @@
 
     function getCompleted($exam){
         $dbh = connectDB();
-        $statement = $dbh->prepare("SELECT COUNT(*) FROM Takes WHERE exam_name =: exam;");
+        $statement = $dbh->prepare("SELECT COUNT(*) FROM Takes WHERE exam_name = :exam;");
         $statement->bindParam(":exam", $exam);
+        $statement->execute();
         $completed = $statement->fetch();
         return $completed[0];
+    }
+    function getMaxScore($exam){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT MAX(grade) FROM Takes WHERE exam_name = :exam;");
+        $statement->bindParam(":exam", $exam);
+        $statement->execute();
+        $max = $statement->fetch();
+        return $max[0];
+    }
+    function getMinScore($exam){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT MIN(grade) FROM Takes WHERE exam_name = :exam;");
+        $statement->bindParam(":exam", $exam);
+        $statement->execute();
+        $min = $statement->fetch();
+        return $min[0];
+    }
+    function getAvgScore($exam){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT AVG(grade) FROM Takes WHERE exam_name = :exam;");
+        $statement->bindParam(":exam", $exam);
+        $statement->execute();
+        $avg = $statement->fetch();
+        return $avg[0];
+    }
+
+    function getTakenExam($exam){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT account_name FROM Takes WHERE exam_name = :exam;");
+        $statement->bindParam(":exam", $exam);
+        $statement->execute();
+        $row = $statement->fetchAll();
+        $dbh = null;
+        $peoples = array();
+        $i = 0;
+        foreach($row as $people) {
+            $peoples[$i] = $people[0];
+            $i++;
+        }
+        sort($peoples);
+        return ($peoples);   
+    }
+
+    function getName($student){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT name FROM Student WHERE account_name = :user;");
+        $statement->bindParam(":user", $student);
+        $statement->execute();
+        $name = $statement->fetch();
+        return $name[0];
     }
 ?>

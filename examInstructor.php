@@ -49,7 +49,10 @@ This is the Check Score Page!<br>
                             <td>' . $course . '</td>
                             <td>' . getCredits($course) . '</td>
                             <td>' . $exam . '</td>
-                            <td>' .  . '</td>
+                            <td>' . getCompleted($exam) . '</td>
+                            <td>' . getMinScore($exam) . '</td>
+                            <td>' . getMaxScore($exam) . '</td>
+                            <td>' . getAvgScore($exam) . '</td>
                             </tr>';
                 }
             ?>
@@ -61,9 +64,6 @@ This is the Check Score Page!<br>
         <tr>
             <th>
                 <b>id</b>
-            </th>
-            <th>
-                <b>Total</b>
             </th>
             <th>
                 <b>Name</b>
@@ -78,6 +78,21 @@ This is the Check Score Page!<br>
                 <b>Score</b>
             </th>
         </tr>
+        <?php
+        
+            $course = $_POST["course"];
+            $exam = $_POST["exam"];
+            $allstudents = getTakenExam($exam);
+            foreach($allstudents as $student) {
+                    echo '<tr>
+                            <td>' . $student . '</td>
+                            <td>' . getName($student) . '</td>
+                            <td>' . getStartTime($exam, $student) . '</td>
+                            <td>' . getEndTime($exam, $student) . '</td>
+                            <td>' . getScore($exam, $student) . '</td>
+                            </tr>';
+                }
+            ?>
     </table>
 </div>
 <br>
