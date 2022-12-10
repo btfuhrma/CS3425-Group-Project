@@ -186,7 +186,7 @@
 </div>
 <?php
     if(isset($_POST["registerCourse"])){
-        if(courseExists($_POST["courseName"]) && examExists($_POST["examName"])){
+        if(courseExists($_POST["courseName"])){
             registerCourse($_SESSION["username"], $_POST["courseName"]);
         }
     }
