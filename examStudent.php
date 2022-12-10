@@ -1,5 +1,8 @@
 <html>
 <?php
+    session_start();
+    require 'db.php';
+
     if(isset($_POST["registerCourse"])){
         if(courseExists($_POST["courseName"])){
             registerCourse($_SESSION["username"], $_POST["courseName"]);
@@ -42,7 +45,7 @@
                 ';
                 foreach($answers as $answer){
                     $letterN++;
-                    $letter = chr($letterN + 1);
+                    $letter = chr($letterN);
                     echo '
                     <div>
                     <input type="radio" name="'.$question.'" value="'.$letter.'"> 
