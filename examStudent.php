@@ -6,21 +6,29 @@
     if(isset($_POST["registerCourse"])){
         if(courseExists($_POST["courseName"])){
             registerCourse($_SESSION["username"], $_POST["courseName"]);
+            header('LOCATION: student.php');
         }
     }
     if(isset($_POST["takeExam"])){
-        if(courseExists($_POST["courseName"]) && examExists($_POST["examName"] && isOpen($_POST["examName"]))){
+        if(courseExists($_POST["courseName"]) && examExists($_POST["examName"])){
             setStartTime($_POST["examName"], $_POST["courseName"], $_SESSION["username"]);
             $_SESSION["currentExam"] = $_POST["examName"];
+        }
+        else{
+            header('LOCATION: student.php');
         }
     }
     if(isset($_POST["checkScore"])){
         if(courseExists($_POST["courseName"]) && examExists($_POST["examName"]) && taken($_POST["examName"], $_SESSION["username"])){
             $_SESSION["currentExam"] = $_POST["examName"];
+            header('LOCATION: checkScore.php');
+        }
+        else{
+            header('LOCATION: student.php');
         }
     }
     if (!isset($_SESSION["currentExam"])) {
-        //header('LOCATION: student.php');
+        header('LOCATION: student.php');
     }
 ?>
 
