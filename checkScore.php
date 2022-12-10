@@ -41,7 +41,7 @@
                 <td>'.getscore($_SESSION["currentExam"], $_SESSION["username"]).'</td>
                 <td>'.$start.'</td>
                 <td>'.$end.'<td>
-                <td>'.$end-$start.'</td>
+                <td>'.date_diff(DateTime::createFromFormat('Y-m-d H:i:s', strtotime($start)), DateTime::createFromFormat('Y-m-d H:i:s',strtotime($end))).'</td>
                 ';
             ?>
         </tr>
