@@ -390,4 +390,14 @@
         $statement->bindParam(":choice", $choice);
         $result = $statement->execute();
     }
+
+    function setEndTime($user, $exam){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("UPDATE Takes SET end_time = :now WHERE account_name = :accountName AND exam_name = :exam");
+        $statement->bindParam(":accountName", $user);
+        $statement->bindParam(":exam", $exam);
+        $now = date('Y-m-d H:i:s');
+        $statement->bindParam(":now", $now);
+        $statement->execute();
+    }
 ?>
