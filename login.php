@@ -64,7 +64,7 @@ if(isset($_SESSION["username"])){
         cursor: pointer;
     }
     .text{
-        padding: 40px 0px 10px 30px;
+        padding: 10px 0px 10px 30px;
     }
     .resize{
         padding-left: 100px;
@@ -91,7 +91,9 @@ if(isset($_SESSION["username"])){
             <div class="inputbtn">
                 <input class="submit-input" type="submit" name="loginSubmit" value="LOGIN" style="height:42px;">
             </div>
-            <p class="text">By logging into this system you agree to abide by Michigan Tech's Acceptable Use of Information Technology Resources.<p>
+            <p class="text"><a href="https://servicedesk.mtu.edu/TDClient/1801/Portal/KB/ArticleDet?ID=52831">Forgot your password?</a></p>
+            <p class="text">By logging into this system you agree to abide by Michigan Tech's
+            <a href="https://www.mtu.edu/policy/policies/general/1-06/">Acceptable Use of Information Technology Resources.</a><p>
         </form>
         </div>
     </div>
