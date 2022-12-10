@@ -355,7 +355,7 @@
 
     function getTakenExam($exam){
         $dbh = connectDB();
-        $statement = $dbh->prepare("SELECT account_name FROM Takes WHERE exam_name = :exam and end_time != null;");
+        $statement = $dbh->prepare("SELECT account_name FROM Takes WHERE exam_name = :exam and end_time IS NOT NULL;");
         $statement->bindParam(":exam", $exam);
         $statement->execute();
         $row = $statement->fetchAll();
