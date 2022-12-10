@@ -165,10 +165,11 @@
         sort($courses);
         return ($courses);
     }
-    function taken($exam){
+    function taken($exam, $user){
         $dbh = connectDB();
-        $statement = $dbh->prepare("SELECT count(*) FROM Takes WHERE exam_name = :exam");
+        $statement = $dbh->prepare("SELECT count(*) FROM Takes WHERE exam_name = :exam AND account_name = :user");
         $statement->bindParam(":exam", $exam);
+        $statement->bindParam(":user", $user);
         $result = $statement->execute();
         $row = $statement->fetch();
         if($row[0] == 1){

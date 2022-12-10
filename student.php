@@ -105,7 +105,7 @@
                         <td>'.getCloseTime($exam).'</td>
                         <td>'.getTotalPoints($exam).'</td>
                         ';
-                        if(taken($exam)){
+                        if(taken($exam, $_SESSION["username"])){
                             echo '
                             <td>'.getStartTime($exam, $_SESSION["username"]).'</td>
                             <td>'.getEndTime($exam, $_SESSION["username"]).'</td>
@@ -149,7 +149,10 @@
             <th>
                 <b>instructor_id</b>
             </th>
-        <tr>
+        </tr>
+            <tr>
+
+            </tr>
     </table>
 </div>
 <div>
