@@ -129,11 +129,19 @@
                 foreach($answers as $answer){
                     $letterN++;
                     $letter = chr($letterN);
-                    echo '
-                    <div>
-                    <p style="margin-left: 50px;" name="'.$question.'" value="'.$letter.'"> 
-                    <label for="'.$question.'">'.$letter.': '.$answer.'</label> 
-                    </div>';
+                    if($choice == $answer){
+                        echo '
+                        <div>
+                        <p style="margin-left: 50px;" name="'.$question.'" value="'.$letter.'"> 
+                        <label for="'.$question.'">'.$letter.': '.$answer.'(Correct)</label> 
+                        </div>'; 
+                    }else{echo '
+                        <div>
+                        <p style="margin-left: 50px;" name="'.$question.'" value="'.$letter.'"> 
+                        <label for="'.$question.'">'.$letter.': '.$answer.'</label> 
+                        </div>';
+                    }
+                    
                 }
                 echo '</div>';
             }
