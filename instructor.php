@@ -11,17 +11,16 @@
         }
     ?>
 
-    <form action="login.php" method="get">
-    <p style="text-align:left">
-    <input type="submit" value="logout" name="logout">
-    <?php
-    if (isset($_GET["logout"])) {
-        header("LOCATION:login.php");
-        session_destroy();
-       }
-    ?>
-    </form> 
-    </p>
+    <form action="instructor.php" method="post">
+        <input type="submit" value="logout" name="logout">
+        <?php
+               if (isset($_POST["logout"])) {
+                    session_destroy();
+                    header("LOCATION:login.php");
+                    
+                }
+                ?>
+    </form>
 
     <div>
         <p>Here are the courses you are teaching and the exams that you have created for each course</p>
