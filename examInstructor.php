@@ -8,6 +8,12 @@ if (isset($_POST["checkScore"])) {
     if (!(courseExists($course) && examExists($exam))) {
         header('LOCATION: instructor.php');
     }
+    $teaches = getCoursesInstructor($_SESSION["username"]);
+    foreach ($teaches as $teach) {
+        if (!($teach == $course)) {
+            header('LOCATION: instructor.php');
+        }
+    }
 ?>
 
 <style>
@@ -114,6 +120,12 @@ if (isset($_POST["reviewExam"])) {
     $exam = $_POST["exam"];
     if (!(courseExists($course) && examExists($exam))) {
         header('LOCATION: instructor.php');
+    }
+    $teaches = getCoursesInstructor($_SESSION["username"]);
+    foreach ($teaches as $teach) {
+        if (!($teach == $course)) {
+            header('LOCATION: instructor.php');
+        }
     }
     echo '<p align="left"> Here are the questions for ' . $exam . ',</p>';
 ?>
