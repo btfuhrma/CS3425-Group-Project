@@ -190,5 +190,11 @@
             registerCourse($_SESSION["username"], $_POST["courseName"]);
         }
     }
+    if(isset($_POST["takeExam"])){
+        if(courseExists($_POST["courseName"]) && examExists($_POST["examName"] && isOpen(strtotime(date('Y-m-d H:i:s'))))){
+            //setStartTime(strtotime(date('Y-m-d H:i:s')));
+            $_SESSION["currentExam"] = $_POST["examName"];
+        }
+    }
 ?>
 </html>

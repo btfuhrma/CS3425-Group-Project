@@ -259,4 +259,21 @@
         $statement->bindParam(":course", $course);
         $result = $statement->execute();
     }
+
+    function isOpen($exam){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT start_time,end_time FROM Exam WHERE exam_name = :examName");
+        $statement->bindParam(":examName", $exam);
+        $statement->execute();
+        $row = $statement->fetch();
+        $start = $row[0];
+        $end = $row[1];
+        $now = strtotime(date('Y-m-d H:i:s'));
+        if($now < $end && $now > $start){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 ?>
