@@ -58,7 +58,7 @@
                     $letter = chr($letterN);
                     echo '
                     <div>
-                    <input type="radio" name="'.$question.'" value="'.$letter.'"> 
+                    <input type="radio" name="'.$question.'" value="'.$answer.'"> 
                     <label for="'.$question.'">'.$letter.': '.$answer.'</label> 
                     </div>';
                 }
