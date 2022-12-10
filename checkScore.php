@@ -10,4 +10,40 @@
             }
         }
     ?>
+    <table>
+        <tr>
+            <th>
+                <b>
+                    Score
+                </b>
+            </th>
+            <th>
+                <b>
+                    Start Time
+                </b>
+            </th>
+            <th>
+                <b>
+                    End Time
+                </b>
+            </th>
+            <th>
+                <b>
+                    Duration in Seconds
+                </b>
+            </th>
+        </tr>
+        <tr>
+            <?php
+                $start = getStartTime($_SESSION["currentExam"], $_SESSION["username"]);
+                $end = getEndTime($_SESSION["currentExam"], $_SESSION["username"]);
+                echo '
+                <td>'.getscore($_SESSION["currentExam"], $_SESSION["username"]).'</td>
+                <td>'.$start.'</td>
+                <td>'.$end.'<td>
+                <td>'.$end-$start.'</td>
+                ';
+            ?>
+        </tr>
+    </table>
 </html>
