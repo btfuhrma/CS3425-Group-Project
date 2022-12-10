@@ -285,4 +285,12 @@
         $statement->bindParam(":course", strtotime(date('Y-m-d H:i:s')));
         $result = $statement->execute();
     }
+
+    function getCompleted($exam){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT COUNT(*) FROM Takes WHERE exam_name =: exam;");
+        $statement->bindParam(":exam", $exam);
+        $completed = $statement->fetch();
+        return $completed[0];
+    }
 ?>

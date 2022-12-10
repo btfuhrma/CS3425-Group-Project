@@ -49,7 +49,7 @@ This is the Check Score Page!<br>
                             <td>' . $course . '</td>
                             <td>' . getCredits($course) . '</td>
                             <td>' . $exam . '</td>
-                            <td>' . getInstructorName($course) . '</td>
+                            <td>' .  . '</td>
                             </tr>';
                 }
             ?>
