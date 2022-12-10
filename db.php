@@ -286,6 +286,40 @@
         $result = $statement->execute();
     }
 
+    function getExamQuestions($exam){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT prompt FROM Question WHERE exam_name = :exam");
+        $statement->bindParam(":exam", $exam);
+        $result = $statement->execute();
+        $allquestions = $statement->fetchAll();
+        $dbh = null;
+        $questions = array();
+        $i = 0;
+        foreach($allquestions as $question) {
+            $questions[$i] = $question[0];
+            $i++;
+        }
+        sort($questions);
+        return ($questions);    
+    }
+
+    function getQuestionAnswers($prompt){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT choice FROM Choice WHERE prompt = :prompt");
+        $statement->bindParam(":prompt", $prompt);
+        $result = $statement->execute();
+        $answerq = $statement->fetchAll();
+        $dbh = null;
+        $answers = array();
+        $i = 0;
+        foreach($answerq as $answer) {
+            $answers[$i] = $answer[0];
+            $i++;
+        }
+        sort($answers);
+        return ($answers);     
+    }
+
     function getCompleted($exam){
         $dbh = connectDB();
         $statement = $dbh->prepare("SELECT COUNT(*) FROM Takes WHERE exam_name = :exam;");
