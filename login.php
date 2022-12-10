@@ -92,10 +92,10 @@ require "db.php";
     <?php
     if (isset($_POST["loginSubmit"])) {
         if (authenticateUser($_POST["username"], $_POST["password"]) == 1 && firstTime($_POST["username"], $_POST["password"]) == true) {
+            $_SESSION["username"] = $_POST["username"];
             header('LOCATION: changePassword.php');
         } else if (authenticateUser($_POST["username"], $_POST["password"]) == 1 && firstTime($_POST["username"], $_POST["password"]) == false) {
             $_SESSION["username"] = $_POST["username"];
-            echo isInstructor($_POST["username"]);
             if (isInstructor($_POST["username"]) == 1) {
                 header('LOCATION: instructor.php');
             } else {

@@ -212,4 +212,16 @@
         sort($courses);
         return ($courses);   
     }
+    function updatePassword($passwd, $user){
+        $dbh = connectDB();
+        if(isInstructor($user) == 1){
+            $statement = $dbh->prepare("UPDATE Instructor SET password = :passwd WHERE account_name = :user");
+        }
+        else{
+            $statement = $dbh->prepare("UPDATE Student SET password = :passwd WHERE account_name = :user");
+        }
+        $statement->bindParam(":passwd", $passwd);
+        $statement->bindParam(":user", $user);
+        $result = $statement->execute();
+    }
 ?>
