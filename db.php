@@ -282,7 +282,8 @@
         $statement->bindParam(":accountName", $user);
         $statement->bindParam(":course", $course);
         $statement->bindParam(":exam", $exam);
-        $statement->bindParam(":startTime", date('Y-m-d H:i:s'));
+        $date = date('Y-m-d H:i:s');
+        $statement->bindParam(":startTime", $date);
         $result = $statement->execute();
     }
 
