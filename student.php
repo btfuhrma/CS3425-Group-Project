@@ -200,7 +200,7 @@
     if(isset($_POST["checkScore"])){
         if(courseExists($_POST["courseName"]) && examExists($_POST["examName"]) && taken($_POST["examName"], $_SESSION["username"])){
             $_SESSION["currentExam"] = $_POST["examName"];
-            header('LOCATION: examStudent.php');
+            header('LOCATION: checkScore.php');
         }
     }
 ?>
