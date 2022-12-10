@@ -6,7 +6,7 @@
     if(isset($_POST["registerCourse"])){
         if(courseExists($_POST["courseName"])){
             registerCourse($_SESSION["username"], $_POST["courseName"]);
-            header('LOCATION: student.php');
+            header('LOCATION: newCourse.php');
         }
     }
     if(isset($_POST["takeExam"])){
