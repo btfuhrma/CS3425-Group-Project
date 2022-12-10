@@ -131,15 +131,6 @@
         return ($exams);
     }
 
-    function getCourseID($user)
-    {
-        $dbh = connectDB();
-        $statement = $dbh->prepare("SELECT course_id FROM Register WHERE account_name =:username");
-        $statement->bindParam(":username", $user);
-        $statement->execute();
-        $examName = $statement->fetch();
-        return $examName[0];
-    }
     function getInstructorName($course)
     {
         $dbh = connectDB();
