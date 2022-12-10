@@ -151,7 +151,19 @@
             </th>
         </tr>
             <tr>
-
+                <?php
+                    $allCourses = getAllCourses();
+                    foreach($allCourses as $courseListItem){
+                        if(!in_array($courseListItem, $courses)){
+                            echo '<tr>
+                                <td>'.$courseListItem.'</td>
+                                <td>'.getCourseTitle($courseListItem).'</td>
+                                <td>'.getCredits($courseListItem).'</td>
+                                <td>'.getInstructorName($courseListItem).'</td>
+                                </tr>';
+                        }
+                    }
+                ?>
             </tr>
     </table>
 </div>

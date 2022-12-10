@@ -197,4 +197,19 @@
         $row = $statement->fetch();
         return $row[0];
     }
+    function getAllCourses(){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT course_id FROM Course");
+        $result = $statement->execute();
+        $row = $statement->fetchAll();
+        $dbh = null;
+        $courses = array();
+        $i = 0;
+        foreach($row as $course) {
+            $courses[$i] = $course[0];
+            $i++;
+        }
+        sort($courses);
+        return ($courses);   
+    }
 ?>
