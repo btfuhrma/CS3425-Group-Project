@@ -379,4 +379,15 @@
         $name = $statement->fetch();
         return $name[0];
     }
+
+    function gradeQuestion($user, $course, $exam, $prompt, $choice){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("INSERT INTO Answer VALUES(:accountName , :course , :exam , :prompt, :choice, 0)");
+        $statement->bindParam(":accountName", $user);
+        $statement->bindParam(":course", $course);
+        $statement->bindParam(":exam", $exam);
+        $statement->bindParam(":prompt", $prompt);
+        $statement->bindParam(":choice", $choice);
+        $result = $statement->execute();
+    }
 ?>
