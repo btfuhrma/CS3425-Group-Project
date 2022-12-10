@@ -1,9 +1,19 @@
 <html>
 <?php
-    session_start();
-    require 'db.php';
-    if (isset($_POST["checkScore"])) {
-        
+session_start();
+require 'db.php';
+if (isset($_POST["checkScore"])) {
+    $course = $_POST["course"];
+    $exam = $_POST["exam"];
+    if (!(courseExists($course) && examExists($exam))) {
+        header('LOCATION: instructor.php');
+    }
+    $teaches = getCoursesInstructor($_SESSION["username"]);
+    foreach ($teaches as $teach) {
+        if (!($teach == $course)) {
+            header('LOCATION: instructor.php');
+        }
+    }
 ?>
 
 <style>
@@ -40,10 +50,8 @@
             </th>
         </tr>
         <?php
-            $course = $_POST["course"];
-            $exam = $_POST["exam"];
-            for($x = 0; $x < 1; $x++) {
-                    echo '<tr>
+    for ($x = 0; $x < 1; $x++) {
+        echo '<tr>
                             <td>' . $course . '</td>
                             <td>' . getCredits($course) . '</td>
                             <td>' . $exam . '</td>
@@ -52,8 +60,8 @@
                             <td>' . getMaxScore($exam) . '</td>
                             <td>' . getAvgScore($exam) . '</td>
                             </tr>';
-                }
-            ?>
+    }
+        ?>
     </table>
 </div>
 <br>
@@ -77,93 +85,103 @@
             </th>
         </tr>
         <?php
-            $course = $_POST["course"];
-            $exam = $_POST["exam"];
-            $allstudents = getTakenExam($exam);
-            foreach($allstudents as $student) {
-                    echo '<tr>
+    $course = $_POST["course"];
+    $exam = $_POST["exam"];
+    $allstudents = getTakenExam($exam);
+    foreach ($allstudents as $student) {
+        echo '<tr>
                             <td>' . $student . '</td>
                             <td>' . getName($student) . '</td>
                             <td>' . getStartTime($exam, $student) . '</td>
                             <td>' . getEndTime($exam, $student) . '</td>
                             <td>' . getScore($exam, $student) . '</td>
                             </tr>';
-                }
-            ?>
+    }
+        ?>
     </table>
 </div>
 <br>
 <form action="instructor.php" method="post">
-<button name="goBack">Go Back</button>
+    <button name="goBack">Go Back</button>
     <?php
-        if (isset($_POST["goBack"])) {
-            header("LOCATION:instructor.php");
-        }
+    if (isset($_POST["goBack"])) {
+        header("LOCATION:instructor.php");
+    }
     ?>
 </form>
 
 <?php
-    }
+}
 ?>
 
 <?php
-    if (isset($_POST["reviewExam"])) {
-        $course = $_POST["course"];
-        $exam = $_POST["exam"];
-        echo '<p align="left"> Here are the questions for '. $exam.',</p>';
+if (isset($_POST["reviewExam"])) {
+    $course = $_POST["course"];
+    $exam = $_POST["exam"];
+    if (!(courseExists($course) && examExists($exam))) {
+        header('LOCATION: instructor.php');
+    }
+    $teaches = getCoursesInstructor($_SESSION["username"]);
+    foreach ($teaches as $teach) {
+        if (!($teach == $course)) {
+            header('LOCATION: instructor.php');
+        }
+    }
+    echo '<p align="left"> Here are the questions for ' . $exam . ',</p>';
 ?>
 
 <br>
 <div class="exam-container">
     <form>
         <?php
-            $questions = getExamQuestions($exam);
-            $i = 0;
-            foreach($questions as $question){
-                $answers = getQuestionAnswers($question);
-                $choice = getCorrect($question);
-                $i++;
-                $letterN = 64;
-                echo '<div class="question"
-                <p>Q'.$i.' '.$question.'</p>';
-                foreach($answers as $answer){
-                    $letterN++;
-                    $letter = chr($letterN);
-                    if($choice == $answer){
-                        echo '
+    $questions = getExamQuestions($exam);
+    $i = 0;
+    foreach ($questions as $question) {
+        $answers = getQuestionAnswers($question);
+        $choice = getCorrect($question);
+        $i++;
+        $letterN = 64;
+        echo '<div class="question"
+                <p>Q' . $i . ' ' . $question . '</p>';
+        foreach ($answers as $answer) {
+            $letterN++;
+            $letter = chr($letterN);
+            if ($choice == $answer) {
+                echo '
                         <div>
-                        <p style="margin-left: 50px;" name="'.$question.'" value="'.$letter.'"> 
-                        <label for="'.$question.'">'.$letter.': '.$answer.'(Correct)</label> 
-                        </div>'; 
-                    }else{echo '
-                        <div>
-                        <p style="margin-left: 50px;" name="'.$question.'" value="'.$letter.'"> 
-                        <label for="'.$question.'">'.$letter.': '.$answer.'</label> 
+                        <p style="margin-left: 50px;" name="' . $question . '" value="' . $letter . '"> 
+                        <label for="' . $question . '">' . $letter . ': ' . $answer . ' (Correct)</label> 
                         </div>';
-                    }
-                    
-                }
-                echo '</div>';
+            } else {
+                echo '
+                        <div>
+                        <p style="margin-left: 50px;" name="' . $question . '" value="' . $letter . '"> 
+                        <label for="' . $question . '">' . $letter . ': ' . $answer . '</label> 
+                        </div>';
             }
+
+        }
+        echo '</div>';
+    }
         ?>
     </form>
 </div>
 
 <form action="instructor.php" method="post">
-<button name="goBack">Go Back</button>
+    <button name="goBack">Go Back</button>
     <?php
-        if (isset($_POST["goBack"])) {
-            header("LOCATION:instructor.php");
-        }
+    if (isset($_POST["goBack"])) {
+        header("LOCATION:instructor.php");
+    }
     ?>
 </form>
 
 <?php
-    }
+}
 ?>
 
 <?php
-    if (isset($_POST["createExam"])) {
+if (isset($_POST["createExam"])) {
 
 ?>
 This function is not implemented yet<br>
@@ -171,14 +189,14 @@ This function is not implemented yet<br>
 <form action="instructor.php" method="post">
     <button name="goBack">Go Back</button>
     <?php
-        if (isset($_POST["goBack"])) {
-            header("LOCATION:instructor.php");
-        }
+    if (isset($_POST["goBack"])) {
+        header("LOCATION:instructor.php");
+    }
     ?>
 </form>
 
 <?php
-    }
+}
 ?>
 
 </html>

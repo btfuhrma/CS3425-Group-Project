@@ -91,18 +91,6 @@
         <button name="createExam">Create Exam</button>
     </form>
 
-        <?php
-        if (isset($_POST["checkScore"])) {
-            header("LOCATION:examInstructor.php");
-        }
-        if (isset($_POST["reviewExam"])) {
-            header("LOCATION:examInstructor.php");
-        }
-        if (isset($_POST["createExam"])) {
-            header("LOCATION:examInstructor.php");
-        }
-        ?>
-
     </body>
     
 </html>
