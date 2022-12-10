@@ -92,7 +92,37 @@
             <th>
                 <b>score</b>
             </th>
+        </tr>
         <tr>
+            <?php
+                foreach($courses as $course){
+                    $exams = getExams($course);
+                    foreach($exams as $exam){
+                        echo '<tr>
+                        <td>'.$course.'</td>
+                        <td>'.$exam.'</td>
+                        <td>'.getOpenTime($exam).'</td>
+                        <td>'.getCloseTime($exam).'</td>
+                        <td>'.getTotalPoints($exam).'</td>
+                        ';
+                        if(taken($exam)){
+                            echo '
+                            <td>'.getStartTime($exam, $_SESSION["username"]).'</td>
+                            <td>'.getEndTime($exam, $_SESSION["username"]).'</td>
+                            <td>'.getScore($exam, $_SESSION["username"]).'</td>
+                            </tr>';
+                        }
+                        else{
+                            echo '
+                            <td>Not Taken</td>
+                            <td>Not Taken</td>
+                            <td>Not Taken</td>
+                            </tr>';
+                        }
+                    }
+                }
+            ?>
+        </tr>
     </table>
 </div>
 <div>

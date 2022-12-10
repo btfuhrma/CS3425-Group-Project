@@ -90,14 +90,6 @@
         $credits = $statement->fetch();
         return $credits[0];
     }
-    function getExamName($course){
-        $dbh = connectDB();
-        $statement = $dbh->prepare("SELECT exam_name FROM examOf WHERE course_id = :course");
-        $statement->bindParam(":course", $course);
-        $statement->execute();
-        $examName = $statement->fetch();
-        return $examName[0];
-    }
     function getOpenTime($examName){
         $dbh = connectDB();
         $statement = $dbh->prepare("SELECT start_time FROM Exam WHERE exam_name = :examName");
@@ -172,5 +164,45 @@
         }
         sort($courses);
         return ($courses);
+    }
+    function taken($exam){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT count(*) FROM Takes WHERE exam_name = :exam");
+        $statement->bindParam(":exam", $exam);
+        $result = $statement->execute();
+        $row = $statement->fetch();
+        if($row[0] == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    function getStartTime($exam, $user){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT start_time FROM Takes WHERE exam_name = :exam AND account_name = :user");
+        $statement->bindParam(":exam", $exam);
+        $statement->bindParam(":user", $user);
+        $result = $statement->execute();
+        $row = $statement->fetch();
+        return $row[0];
+    }
+    function getEndTime($exam, $user){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT end_time FROM Takes WHERE exam_name = :exam AND account_name = :user");
+        $statement->bindParam(":exam", $exam);
+        $statement->bindParam(":user", $user);
+        $result = $statement->execute();
+        $row = $statement->fetch();
+        return $row[0];
+    }
+    function getScore($exam, $user){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT grade FROM Takes WHERE exam_name = :exam AND account_name = :user");
+        $statement->bindParam(":exam", $exam);
+        $statement->bindParam(":user", $user);
+        $result = $statement->execute();
+        $row = $statement->fetch();
+        return $row[0];
     }
 ?>
