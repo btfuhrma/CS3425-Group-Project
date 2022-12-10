@@ -78,27 +78,27 @@
     </div>
        
     <p>Please enter the course id and the exam name to see the score of the students</p>
-        
-        <p>Course: 
-            <input name="username" type="text">
+    <form action="examInstructor.php" method="post">
+        <p>Course:
+            <input name="course" type="text">
+    
+        <p>Exam:
+            <input name="exam" type="text">
         </p>
-        <p>Exam: 
-            <input name="password" type="text">
-        </p>
-        <form action="examInstructor.php" method="post" >
+    
         <button name="checkScore">Check Score</button>
         <button name="reviewExam">Review Exam</button>
         <button name="createExam">Create Exam</button>
-        </form> 
+    </form>
 
         <?php
         if (isset($_POST["checkScore"])) {
             header("LOCATION:examInstructor.php");
         }
-        if (isset($_POST["checkScore"])) {
+        if (isset($_POST["reviewExam"])) {
             header("LOCATION:examInstructor.php");
         }
-        if (isset($_POST["checkScore"])) {
+        if (isset($_POST["createExam"])) {
             header("LOCATION:examInstructor.php");
         }
         ?>
