@@ -20,13 +20,17 @@
             foreach($questions as $question){
                 $answers = getQuestionAnswers($question);
                 $i++;
+                $letter = chr(65);
                 echo '<div class="question"
                 <p>Q'.$i.' '.$question.'</p>
                 ';
                 foreach($answers as $answer){
+                    $letter = chr($letter + 1);
                     echo '
-                    <input type="radio"> 
-                    ';
+                    <div>
+                    <input type="radio" name="'.$answer.'" value="'.$letter.'"> 
+                    <label for="'.$answer.'">'.$letter.': '.$answer.'</label> 
+                    </div>';
                 }
                 echo '</div>';
             }
