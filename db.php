@@ -276,4 +276,13 @@
             return false;
         }
     }
+    function setStartTime($exam, $course, $user){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("INSERT INTO Takes VALUES(:accountName , :course , :exam , :startTime)");
+        $statement->bindParam(":accountName", $user);
+        $statement->bindParam(":course", $course);
+        $statement->bindParam(":exam", $exam);
+        $statement->bindParam(":course", strtotime(date('Y-m-d H:i:s')));
+        $result = $statement->execute();
+    }
 ?>

@@ -191,9 +191,10 @@
         }
     }
     if(isset($_POST["takeExam"])){
-        if(courseExists($_POST["courseName"]) && examExists($_POST["examName"] && isOpen(strtotime(date('Y-m-d H:i:s'))))){
-            //setStartTime(strtotime(date('Y-m-d H:i:s')));
+        if(courseExists($_POST["courseName"]) && examExists($_POST["examName"] && isOpen($_POST["examName"]))){
+            setStartTime($_POST["examName"], $_POST["courseName"], $_SESSION["username"]);
             $_SESSION["currentExam"] = $_POST["examName"];
+            header('LOCATOION: examStudent.php');
         }
     }
 ?>
