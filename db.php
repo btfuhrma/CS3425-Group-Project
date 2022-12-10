@@ -224,4 +224,39 @@
         $statement->bindParam(":user", $user);
         $result = $statement->execute();
     }
+
+    function courseExists($course){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT count(*) FROM Course WHERE course_id = :course");
+        $statement->bindParam(":course", $course);
+        $result = $statement->execute();
+        $row = $statement->fetch();
+        if($row[0] == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    function examExists($examName){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT count(*) FROM Exam WHERE exam_name = :examName");
+        $statement->bindParam(":examName", $examName);
+        $result = $statement->execute();
+        $row = $statement->fetch();
+        if($row[0] == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    function registerCourse($user, $course){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("INSERT INTO Register VALUES(:accountName , :course)");
+        $statement->bindParam(":accountName", $user);
+        $statement->bindParam(":course", $course);
+        $result = $statement->execute();
+    }
 ?>
