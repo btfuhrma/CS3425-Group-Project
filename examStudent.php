@@ -10,7 +10,7 @@
         }
     }
     if(isset($_POST["takeExam"])){
-        if(courseExists($_POST["courseName"]) && examExists($_POST["examName"])){
+        if(courseExists($_POST["courseName"]) && examExists($_POST["examName"]) && isOpen($_POST["examName"])){
             setStartTime($_POST["examName"], $_POST["courseName"], $_SESSION["username"]);
             $_SESSION["currentExam"] = $_POST["examName"];
             $_SESSION["courseName"] = $_POST["courseName"];
