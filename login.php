@@ -1,6 +1,13 @@
 <?php
 session_start();
 require "db.php";
+if(isset($_SESSION["username"])){
+    if(isInstructor($_SESSION["username"]) == 1){
+        header('LOCATION: instructor.php');
+    }else{
+        header('LOCATION: student.php');
+    }
+}
 ?>
 <link rel="stylesheet" href="style.css">
 <title>Canvas</title>
