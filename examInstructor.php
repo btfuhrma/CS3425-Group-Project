@@ -77,7 +77,6 @@
             </th>
         </tr>
         <?php
-        
             $course = $_POST["course"];
             $exam = $_POST["exam"];
             $allstudents = getTakenExam($exam);
@@ -109,12 +108,38 @@
 
 <?php
     if (isset($_POST["reviewExam"])) {
-
+        $course = $_POST["course"];
+        $exam = $_POST["exam"];
+        echo '<p align="left"> Here are the questions for '. $exam.',</p>';
 ?>
 
-This is the Review Exam Page!<br>
-Here are the questions for exam (exam name)<br>
-exam questions....<br>
+<br>
+<div class="exam-container">
+    <form>
+        <?php
+            $questions = getExamQuestions($exam);
+            $i = 0;
+            foreach($questions as $question){
+                $answers = getQuestionAnswers($question);
+                $i++;
+                $letterN = 64;
+                echo '<div class="question"
+                <p>Q'.$i.' '.$question.'</p>';
+                foreach($answers as $answer){
+                    $letterN++;
+                    $letter = chr($letterN);
+                    echo '
+                    <div>
+                    <p style="margin-left: 50px;" name="'.$question.'" value="'.$letter.'"> 
+                    <label for="'.$question.'">'.$letter.': '.$answer.'</label> 
+                    </div>';
+                }
+                echo '</div>';
+            }
+        ?>
+    </form>
+</div>
+
 <form action="instructor.php" method="post">
 <button name="goBack">Go Back</button>
     <?php
