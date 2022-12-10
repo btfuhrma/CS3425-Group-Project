@@ -13,6 +13,7 @@
         if(courseExists($_POST["courseName"]) && examExists($_POST["examName"])){
             setStartTime($_POST["examName"], $_POST["courseName"], $_SESSION["username"]);
             $_SESSION["currentExam"] = $_POST["examName"];
+            $_SESSION["courseName"] = $_POST["courseName"];
         }
         else{
             header('LOCATION: student.php');
@@ -21,6 +22,7 @@
     if(isset($_POST["checkScore"])){
         if(courseExists($_POST["courseName"]) && examExists($_POST["examName"]) && taken($_POST["examName"], $_SESSION["username"])){
             $_SESSION["currentExam"] = $_POST["examName"];
+            $_SESSION["courseName"] = $_POST["courseName"];
             header('LOCATION: checkScore.php');
         }
         else{
@@ -40,7 +42,7 @@
 </form>
 
 <div class="exam-container">
-    <form>
+    <form method="POST" action="checkScore.php">
         <?php
             $questions = getExamQuestions($_SESSION["currentExam"]);
             $i = 0;
@@ -63,6 +65,7 @@
                 echo '</div>';
             }
         ?>
+        <input type="submit" name="examSubmit" value="Submit Exam">
     </form>
 </div>
 </html>
