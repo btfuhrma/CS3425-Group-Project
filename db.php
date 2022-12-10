@@ -400,4 +400,13 @@
         $statement->bindParam(":now", $now);
         $statement->execute();
     }
+
+    function getCorrect($question){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT choice FROM Choice WHERE correct = 1 and prompt = :question;");
+        $statement->bindParam(":question", $question);
+        $statement->execute();
+        $answer = $statement->fetch();
+        return $answer[0];
+    }
 ?>

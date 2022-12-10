@@ -121,6 +121,7 @@
             $i = 0;
             foreach($questions as $question){
                 $answers = getQuestionAnswers($question);
+                $choice = getCorrect($question);
                 $i++;
                 $letterN = 64;
                 echo '<div class="question"
