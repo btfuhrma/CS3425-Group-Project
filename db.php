@@ -266,8 +266,8 @@
         $statement->bindParam(":examName", $exam);
         $statement->execute();
         $row = $statement->fetch();
-        $start = $row[0];
-        $end = $row[1];
+        $start = strtotime($row[0]);
+        $end = strtotime($row[1]);
         $now = strtotime(date('Y-m-d H:i:s'));
         if($now < $end && $now > $start){
             return true;
