@@ -19,7 +19,7 @@
             border-collapse: collapse
         }
     </style>
-    <table>
+    <table style="margin-bottom: 20px;">
         <tr>
             <th>
                 <b>
