@@ -52,7 +52,7 @@
                 $i++;
                 $letterN = 64;
                 echo '<div class="question"
-                <p>Q'.$i.' '.$question.'</p>
+                <p>Q'.$i.': '.$question.'</p>
                 ';
                 foreach($answers as $answer){
                     $letterN++;
