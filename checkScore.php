@@ -1,5 +1,6 @@
 <html>
     <?php
+
         session_start();
         require 'db.php';
         if(isset($_POST["examSubmit"])){
@@ -10,6 +11,14 @@
             }
         }
     ?>
+     <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse
+        }
+    </style>
     <table>
         <tr>
             <th>
@@ -40,8 +49,8 @@
                 echo '
                 <td>'.getscore($_SESSION["currentExam"], $_SESSION["username"]).'</td>
                 <td>'.$start.'</td>
-                <td>'.$end.'<td>
-                <td>'.date_diff(DateTime::createFromFormat('Y-m-d H:i:s', strtotime($start)), DateTime::createFromFormat('Y-m-d H:i:s',strtotime($end))).'</td>
+                <td>'.$end.'</td>
+                <td>'.getTimeDifference($_SESSION["currentExam"], $_SESSION["username"]).'</td>
                 ';
             ?>
         </tr>

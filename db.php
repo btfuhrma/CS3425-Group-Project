@@ -409,4 +409,14 @@
         $answer = $statement->fetch();
         return $answer[0];
     }
+
+    function getTimeDifference($exam, $user){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT TIMESTAMPDIFF(SECOND, start_time, end_time) FROM Takes WHERE exam_name = :exam AND account_name = :user");
+        $statement->bindParam(":exam", $exam);
+        $statement->bindParam(":user", $user);
+        $statement->execute();
+        $answer = $statement->fetch();
+        return $answer[0];
+    }
 ?>
