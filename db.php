@@ -419,4 +419,25 @@
         $answer = $statement->fetch();
         return $answer[0];
     }
+
+    function getUserAnswer($user, $exam, $question){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT picked_answer FROM Answer WHERE account_name = :user AND prompt = :question AND exam_name = :exam");
+        $statement->bindParam(":exam", $exam);
+        $statement->bindParam(":user", $user);
+        $statement->bindParam(":question", $question);
+        $statement->execute();
+        $row = $statement->fetch();
+        return $row[0];
+    }
+
+    function getPoints($question, $exam){
+        $dbh = connectDB();
+        $statement = $dbh->prepare("SELECT points FROM Question WHERE  prompt = :question AND exam_name = :exam");
+        $statement->bindParam(":question", $question);
+        $statement->bindParam(":exam", $exam);
+        $statement->execute();
+        $row = $statement->fetch();
+        return $row[0];
+    }
 ?>

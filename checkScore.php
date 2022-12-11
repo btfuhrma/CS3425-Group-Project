@@ -55,4 +55,56 @@
             ?>
         </tr>
     </table>
+    <table>
+    <tr>
+            <th>
+                <b>
+                    Question Number
+                </b>
+            </th>
+            <th>
+                <b>
+                    Description
+                </b>
+            </th>
+            <th>
+                <b>
+                    Your Answer
+                </b>
+            </th>
+            <th>
+                <b>
+                    Your Points
+                </b>
+            </th>
+            <th>
+                <b>
+                    Correct Answer
+                </b>
+            </th>
+        </tr>
+        <?php
+            $questions = getExamQuestions($_SESSION["currentExam"]);
+            $i = 1;
+            foreach($questions as $question){
+                echo '<tr>
+                <td>'.$i.'</td>
+                <td>'.$question.'</td>
+                <td>'.getUserAnswer($_SESSION["username"], $_SESSION["currentExam"], $question).'</td>
+                ';
+                if(strcmp(getUserAnswer($_SESSION["username"], $_SESSION["currentExam"], $question), getCorrect($question)) == 0){
+                    echo '<td>
+                    '.getPoints($question, $_SESSION["currentExam"]).'
+                    </td>';
+                }else{
+                    echo '<td>
+                    0
+                    </td>';
+                }
+                echo '<td>'.getCorrect($question).'</td>
+                </tr>';
+                $i++;
+            }
+        ?>
+    </table>
 </html>
