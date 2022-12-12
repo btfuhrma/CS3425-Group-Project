@@ -13,7 +13,18 @@ if (isset($_POST["checkScore"])) {
         if (!($teach == $course)) {
             header('LOCATION: instructor.php');
         }
+        $tests = getExams($teach);
+        $yes = 0;
+        foreach ($tests as $test) {
+            if (($test == $exam)) {
+                $yes++;
+            } 
+        }
+        if ($yes == 0) {
+            header('LOCATION: instructor.php');
+        }
     }
+
 ?>
 
 <style>
@@ -126,8 +137,17 @@ if (isset($_POST["reviewExam"])) {
         if (!($teach == $course)) {
             header('LOCATION: instructor.php');
         }
+        $tests = getExams($teach);
+        $yes = 0;
+        foreach ($tests as $test) {
+            if (($test == $exam)) {
+                $yes++;
+            } 
+        }
+        if ($yes == 0) {
+            header('LOCATION: instructor.php');
+        }
     }
-    echo '<p align="left"> Here are the questions for ' . $exam . ',</p>';
 ?>
 
 <br>
@@ -182,6 +202,27 @@ if (isset($_POST["reviewExam"])) {
 
 <?php
 if (isset($_POST["createExam"])) {
+    $course = $_POST["course"];
+    $exam = $_POST["exam"];
+    if (!(courseExists($course) && examExists($exam))) {
+        header('LOCATION: instructor.php');
+    }
+    $teaches = getCoursesInstructor($_SESSION["username"]);
+    foreach ($teaches as $teach) {
+        if (!($teach == $course)) {
+            header('LOCATION: instructor.php');
+        }
+        $tests = getExams($teach);
+        $yes = 0;
+        foreach ($tests as $test) {
+            if (($test == $exam)) {
+                $yes++;
+            } 
+        }
+        if ($yes == 0) {
+            header('LOCATION: instructor.php');
+        }
+    }
 
 ?>
 This function is not implemented yet<br>
