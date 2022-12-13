@@ -40,7 +40,7 @@
         $result = $statement->execute();
         $pass = $statement->fetch();
         $dbh = null;
-        if(strcmp($passwd, "password") == 0){
+        if(strcmp($passwd, "tempPassword123$") == 0){
             return true;
         }
         else{
@@ -215,10 +215,10 @@
     function updatePassword($passwd, $user){
         $dbh = connectDB();
         if(isInstructor($user) == 1){
-            $statement = $dbh->prepare("UPDATE Instructor SET password = :passwd WHERE account_name = :user");
+            $statement = $dbh->prepare("UPDATE Instructor SET password = sha2(:passwd, 256) WHERE account_name = :user");
         }
         else{
-            $statement = $dbh->prepare("UPDATE Student SET password = :passwd WHERE account_name = :user");
+            $statement = $dbh->prepare("UPDATE Student SET password = sha2(:passwd, 256) WHERE account_name = :user");
         }
         $statement->bindParam(":passwd", $passwd);
         $statement->bindParam(":user", $user);

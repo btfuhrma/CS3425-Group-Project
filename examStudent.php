@@ -17,6 +17,7 @@
             $_SESSION["courseName"] = $_POST["courseName"];
         }
         else{
+            
             header('LOCATION: student.php');
         }
     }
