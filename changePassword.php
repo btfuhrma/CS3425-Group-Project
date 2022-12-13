@@ -86,12 +86,8 @@ require "db.php";
     <?php
         if(isset($_POST["newPasswordSubmit"])){
             updatePassword($_POST["newPassword"], $_SESSION["username"]);
-            if(isInstructor($_SESSION["username"] == 1)){
-                header('LOCATION: instructor.php');
-            }
-            else{
-                header('LOCATION: student.php');
-            }
+            session_destroy();
+            header('LOCATION: login.php');
         }
     ?>
 </body>
